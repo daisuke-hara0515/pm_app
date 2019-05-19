@@ -6,6 +6,11 @@ class StaticPageControllerTest < ActionDispatch::IntegrationTest
     @base_title = "PocketMoney App"
   end
 
+  test "should get root" do #rootページのテスト
+    get root_url #rootページにアクセス
+    assert_response :success #rootページにアクセスできたら
+  end
+
   test "should get home" do #homeページのテスト
     get static_page_home_url 
     #Getリクエストをstaticpageコントローラーのhomeアクションに対して発行
