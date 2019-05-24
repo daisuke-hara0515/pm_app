@@ -3,7 +3,7 @@ require 'test_helper'
 class StaticPageControllerTest < ActionDispatch::IntegrationTest
 
   def setup
-    @base_title = "PocketMoney App"
+    @base_title = "CalorieManage App"
   end
 
   test "should get root" do #rootページのテスト
@@ -16,8 +16,8 @@ class StaticPageControllerTest < ActionDispatch::IntegrationTest
     #Getリクエストをstaticpageコントローラーのhomeアクションに対して発行
     assert_response :success
     #リクエストに対するレスポンスは成功するはず
-    assert_select "title","PocketMoney App"
-    #テンプレート内のタイトルタグにPocketMoney Appが存在するか
+    assert_select "title","CalorieManage App"
+    #テンプレート内のタイトルタグにCalorieManage Appが存在するか
   end
 
   test "should get help" do
