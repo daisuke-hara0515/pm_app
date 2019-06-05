@@ -6,4 +6,5 @@ class User < ApplicationRecord
                format: {with: VALID_EMAIL_REGEX},
                uniqueness: {case_sensitive: false } 
                #case_sensitiveオプションは、大文字小文字を区別するかどうかのオプションでデフォルトはtrue（区別する）
+    has_secure_password #ハッシュ化パスワードが利用できるようになる
 end
