@@ -7,4 +7,5 @@ class User < ApplicationRecord
                uniqueness: {case_sensitive: false } 
                #case_sensitiveオプションは、大文字小文字を区別するかどうかのオプションでデフォルトはtrue（区別する）
     has_secure_password #ハッシュ化パスワードが利用できるようになる
+    validates :password, presence: true, length: { minimum: 6 }
 end
