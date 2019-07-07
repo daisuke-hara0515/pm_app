@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "カロリーマネージメントへようこそ！"
-      redirect_to user_url(@user) #redirect_to user_url(@user)と等価のコード
+      redirect_to @user #redirect_to user_url(@user)と等価のコード
       #if @user.saveがtrueであるかどうか。falseならnewページをrenderする
     else
       render 'new'
