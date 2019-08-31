@@ -26,6 +26,7 @@ class User < ApplicationRecord
     end
 
     def authenticated?(remember_token)
+      return false if remember_digest.nil? #記憶ダイジェストがnilの場合、falseを返す
       BCrypt::Password.new(remember_digest).is_password?(remember_token)
     end
 
