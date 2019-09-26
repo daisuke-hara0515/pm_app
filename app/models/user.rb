@@ -8,7 +8,7 @@ class User < ApplicationRecord
                uniqueness: {case_sensitive: false } 
                #case_sensitiveオプションは、大文字小文字を区別するかどうかのオプションでデフォルトはtrue（区別する）
     has_secure_password #ハッシュ化パスワードが利用できるようになる
-    validates :password, presence: true, length: { minimum: 6 }
+    validates :password, presence: true, length: { minimum: 6 },allow_nil: true
 
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
