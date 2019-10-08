@@ -17,18 +17,19 @@ class User < ApplicationRecord
         BCrypt::Password.create(string, cost: cost)
     end
 
-    def User.new_token
+    def User.new_token #記憶トークンの作成（生データ）
       SecureRandom.urlsafe_base64
     end
 
     def remember
-      self.remember_token = User.new_token
-      update_attribute(:remember_digest, User.digest(remember_token))
+      self.remember_token = User.new_token #selfはremember_token=のようなセッターメソッドを呼んでいる
+      update_attribute(:remember_digest, User.digest(remember_token)) #remember_digestカラムの記憶ダイジェストを更新する。
     end
 
-    def authenticated?(remember_token)
-      return false if remember_digest.nil? #記憶ダイジェストがnilの場合、falseを返す
-      BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    def authenticated?(attribute,token)
+      digest = self.send("#{attribute}_digest")
+      return false if digest.nil? #記憶ダイジェストがnilの場合、falseを返す
+      BCrypt::Password.new(digest).is_password?(token)
     end
 
     def forget

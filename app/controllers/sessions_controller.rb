@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
-    if @user && @user.authenticate(params[:session][:password])
+    if @user && @user.authenticate(params[:session][:password]) #if @userがtrueだったら右辺を評価する、authenticatedメソッドは引数に渡されたパスワードをハッシュ化して、password_digestと比較する
       log_in @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       redirect_back_or @user

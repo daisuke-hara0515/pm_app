@@ -20,10 +20,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "カロリーマネージメントへようこそ！"
-      redirect_to @user #redirect_to user_url(@user)と等価のコード
-      #if @user.saveがtrueであるかどうか。falseならnewページをrenderする
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "あなたのメールアドレスにアクティベート化メールを送信しました！"
+      redirect_to root_url
     else
       render 'new'
     end
