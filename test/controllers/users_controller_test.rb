@@ -82,4 +82,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_path(@non_activated_user)
     assert_redirected_to root_url
   end
+
+  #work outページへ飛ぶかどうかのテスト
+  test "should redirect work out page" do
+  
 end
+
